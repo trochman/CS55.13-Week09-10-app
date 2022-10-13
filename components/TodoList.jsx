@@ -16,22 +16,19 @@ import {
     const [todos, setTodos] = React.useState([]);
     const {  user } = useAuth();
     const toast = useToast();
-    const refreshData = () => {
-    if (!user) {
-    setTodos([]);
-    return;
-    }
-    const q = query(collection(db, "todo"), where("user", "==", user.uid));
-    onSnapshot(q, (querySnapchot) => {
-    let ar = [];
-    querySnapchot.docs.forEach((doc) => {
-    ar.push({ id: doc.id, ...doc.data() });
-    });
-    setTodos(ar);
-    });
-    };
     useEffect(() => {
-    refreshData();
+        if (!user) {
+            setTodos([]);
+            return;
+            }
+            const q = query(collection(db, "todo"), where("user", "==", user.uid));
+            onSnapshot(q, (querySnapchot) => {
+            let ar = [];
+            querySnapchot.docs.forEach((doc) => {
+            ar.push({ id: doc.id, ...doc.data() });
+            });
+            setTodos(ar);
+            });
     }, [user]);
     const handleTodoDelete = async (id) => {
     if (confirm("Are you sure you wanna delete this todo?")) {
