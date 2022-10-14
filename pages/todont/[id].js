@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const ToDoItem= ({data}) => {
+const ToDontItem= ({data}) => {
     const {user} = useAuth() || {};
     if(!user) {
         return;
@@ -37,7 +37,7 @@ const ToDoItem= ({data}) => {
 
 export async function getServerSideProps(context) {
     let data = null;
-    const document = doc( db, 'todo', context.params.id )
+    const document = doc( db, 'todont', context.params.id )
     const snapshot = await getDoc(document);
     if (snapshot.exists()) {
         data = snapshot.data();
@@ -50,4 +50,4 @@ export async function getServerSideProps(context) {
     }
 };
 
-export default ToDoItem;
+export default ToDontItem;

@@ -30,13 +30,7 @@ const credential = GoogleAuthProvider.credentialFromError(error);
 });
 };
 return (
-<Box display="flex" alignItems="center" justifyContent="space-between">
-    <Box>
-        <Link href="/add-todo">Add To Do</Link>
-    </Box>
-    <Box>
-        <Link href="/">List All To Dos</Link>
-    </Box>
+<Box display="flex" alignItems="center" justifyContent="space-around">
     <Box textAlign="right">
         <Button onClick={() => toggleColorMode()}>
         {colorMode == "dark" ? <FaSun /> : <FaMoon />}
