@@ -10,7 +10,7 @@ useToast,
 } from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
 import { addTodo } from "../api/todo";
-const AddTodo = () => {
+const AddTodos = () => {
 const [title, setTitle] = React.useState("");
 const [description, setDescription] = React.useState("");
 const [status, setStatus] = React.useState("pending");
@@ -80,4 +80,4 @@ Add
 </Box>
 );
 };
-export default AddTodo;
+export default AddTodos;

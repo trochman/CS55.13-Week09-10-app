@@ -1,7 +1,7 @@
 import { Container, Box, Link } from "@chakra-ui/react";
 import AddEvents from "../components/AddEvents";
 
-export default function AddEvents() {
+export default function AddEvent() {
     return (
         <Container maxW="7xl">
         <Box display="flex" alignItems="center" justifyContent="space-around" pb="5%">

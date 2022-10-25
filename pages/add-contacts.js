@@ -1,7 +1,7 @@
 import { Container, Box, Link } from "@chakra-ui/react";
 import AddContacts from "../components/AddContacts";
 
-export default function AddContacts() {
+export default function AddContact() {
     return (
         <Container maxW="7xl">
         <Box display="flex" alignItems="center" justifyContent="space-around" pb="5%">

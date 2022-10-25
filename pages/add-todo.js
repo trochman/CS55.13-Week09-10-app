@@ -1,5 +1,5 @@
 import { Container, Box, Link } from "@chakra-ui/react";
-import AddTodo from "../components/AddTodo";
+import AddTodos from "../components/AddTodo";
 
 export default function AddToDo() {
     return (
@@ -9,7 +9,7 @@ export default function AddToDo() {
             <Link href="/events" fontSize="xl">List All Events</Link>
             <Link href="/contacts" fontSize="xl">List All Contacts</Link>
         </Box>
-        <AddTodo />
+        <AddTodos />
         </Container>
     );
 }
