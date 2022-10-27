@@ -6,12 +6,14 @@ updateDoc,
 doc,
 deleteDoc,
 } from "firebase/firestore";
-const addContacts = async ({ userId, title, description, status }) => {
+const addContacts = async ({ userId, contactName, description, contactAdress, contactRelation, status }) => {
 try {
 await addDoc(collection(db, "contacts"), {
 user: userId,
-title: title,
+name: contactName,
 description: description,
+adress: contactAdress,
+relation: contactRelation,
 status: status,
 createdAt: new Date().getTime(),
 });
