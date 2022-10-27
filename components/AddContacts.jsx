@@ -11,8 +11,10 @@ useToast,
 import useAuth from "../hooks/useAuth";
 import { addContacts } from "../api/contacts";
 const AddContacts = () => {
-const [title, setTitle] = React.useState("");
+const [contactName, setContactName] = React.useState("");
 const [description, setDescription] = React.useState("");
+const [contactAdress, setContactAdress] = React.useState("");
+const [contactRelation, setContactRelation] = React.useState("");
 const [status, setStatus] = React.useState("pending");
 const [isLoading, setIsLoading] = React.useState(false);
 const toast = useToast();
@@ -29,8 +31,10 @@ return;
 }
 setIsLoading(true);
 const contacts = {
-title,
+contactName,
 description,
+contactAdress,
+contactRelation,
 status,
 userId: user.uid,
 };
@@ -45,14 +49,24 @@ return (
 <Box w="40%" margin={"0 auto"} display="block" mt={5}>
 <Stack direction="column">
 <Input
-placeholder="Title"
-value={title}
-onChange={(e) => setTitle(e.target.value)}
+placeholder="Contact Name"
+value={contactName}
+onChange={(e) => setContactName(e.target.value)}
 />
 <Textarea
 placeholder="Description"
 value={description}
 onChange={(e) => setDescription(e.target.value)}
+/>
+<Textarea
+placeholder="Adress"
+value={contactAdress}
+onChange={(e) => setContactAdress(e.target.value)}
+/>
+<Textarea
+placeholder="Relation to Contact"
+value={contactRelation}
+onChange={(e) => setContactRelation(e.target.value)}
 />
 <Select value={status} onChange={(e) => setStatus(e.target.value)}>
 <option
