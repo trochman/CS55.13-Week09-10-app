@@ -40,8 +40,10 @@ userId: user.uid,
 };
 await addContacts(contacts);
 setIsLoading(false);
-setTitle("");
+setContactName("");
 setDescription("");
+setContactAdress("");
+setContactRelation("");
 setStatus("pending");
 toast({ title: "Contact created successfully", status: "success" });
 };

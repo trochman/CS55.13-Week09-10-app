@@ -32,7 +32,7 @@ import {
     }, [user]);
     const handleContactsDelete = async (id) => {
     if (confirm("Are you sure you wanna delete this contact?")) {
-    deleteEvents(id);
+    deleteContacts(id);
     toast({ title: "Contact deleted successfully", status: "success" });
     }
     };
@@ -57,7 +57,7 @@ import {
     _hover={{ boxShadow: "sm" }}
     >
     <Heading as="h3" fontSize={"xl"}>
-    {contacts.title}{" "}
+    {contacts.contactName}{" "}
     <Badge
     color="red.500"
     bg="inherit"
@@ -95,6 +95,8 @@ import {
     </Badge>
     </Heading>
     <Text>{contacts.description}</Text>
+    <Text>{contacts.contactAdress}</Text>
+    <Text>{contacts.contactRelation}</Text>
     </Box>
     ))}
     </SimpleGrid>
