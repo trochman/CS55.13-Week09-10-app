@@ -84,7 +84,7 @@ Completed ✅
 </Select>
 <Button
 onClick={() => handleContactsCreate()}
-disabled={title.length < 1 || description.length < 1 || isLoading}
+disabled={contactName.length < 1 || description.length < 1 || contactAdress.length < 1 || contactRelation.length < 1 || isLoading}
 variantColor="teal"
 variant="solid"
 >
