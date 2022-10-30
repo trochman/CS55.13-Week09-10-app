@@ -2,7 +2,6 @@ import React from "react";
 import {
     Box,
     Heading,
-    SimpleGrid,
     Text
 } from "@chakra-ui/react";
 import useAuth from "../../hooks/useAuth";
@@ -20,13 +19,16 @@ const ContactsItem= ({data}) => {
     return (
         <Box mt={5} pl="5%">
             <Heading as="h3" fontSize={"xl"}>
-                {data.title}
+                {data.name}
             </Heading>
             <Text>
                 {data.description}
             </Text>
             <Text>
-                {data.status}
+                {data.adress}
+            </Text>
+            <Text>
+                {data.relation}
             </Text>
             <Text>
                 {data.createdAt}

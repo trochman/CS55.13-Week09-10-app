@@ -5,7 +5,6 @@ Input,
 Button,
 Textarea,
 Stack,
-Select,
 useToast,
 } from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
@@ -15,7 +14,6 @@ const [contactName, setContactName] = React.useState("");
 const [description, setDescription] = React.useState("");
 const [contactAdress, setContactAdress] = React.useState("");
 const [contactRelation, setContactRelation] = React.useState("");
-const [status, setStatus] = React.useState("pending");
 const [isLoading, setIsLoading] = React.useState(false);
 const toast = useToast();
 const { isLoggedIn, user } = useAuth();
@@ -44,7 +42,6 @@ setContactName("");
 setDescription("");
 setContactAdress("");
 setContactRelation("");
-setStatus("pending");
 toast({ title: "Contact created successfully", status: "success" });
 };
 return (
@@ -70,20 +67,6 @@ placeholder="Relation to Contact"
 value={contactRelation}
 onChange={(e) => setContactRelation(e.target.value)}
 />
-<Select value={status} onChange={(e) => setStatus(e.target.value)}>
-<option
-value={"pending"}
-style={{ color: "yellow", fontWeight: "bold" }}
->
-Pending ⌛
-</option>
-<option
-value={"completed"}
-style={{ color: "green", fontWeight: "bold" }}
->
-Completed ✅
-</option>
-</Select>
 <Button
 onClick={() => handleContactsCreate()}
 disabled={contactName.length < 1 || description.length < 1 || contactAdress.length < 1 || contactRelation.length < 1 || isLoading}

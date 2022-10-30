@@ -1,13 +1,16 @@
 import { Container, Box, Link } from "@chakra-ui/react";
 import AddContacts from "../components/AddContacts";
+import Header from "../components/Header";
+import { auth } from "../firebase/";
+
 
 export default function AddContact() {
     return (
         <Container maxW="7xl">
         <Box display="flex" alignItems="center" justifyContent="space-around" pb="5%">
-            <Link href="/" fontSize="xl">List All To Dos</Link>
-            <Link href="/events" fontSize="xl">List All Events</Link>
-            <Link href="/contacts" fontSize="xl">List All Contacts</Link>
+            <Header 
+            email={auth.email} 
+            signOut={auth.signOut} />
         </Box>
         <AddContacts />
         </Container>

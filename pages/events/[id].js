@@ -2,7 +2,6 @@ import React from "react";
 import {
     Box,
     Heading,
-    SimpleGrid,
     Text
 } from "@chakra-ui/react";
 import useAuth from "../../hooks/useAuth";

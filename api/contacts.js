@@ -6,7 +6,7 @@ updateDoc,
 doc,
 deleteDoc,
 } from "firebase/firestore";
-const addContacts = async ({ userId, contactName, description, contactAdress, contactRelation, status }) => {
+const addContacts = async ({ userId, contactName, description, contactAdress, contactRelation }) => {
 try {
 await addDoc(collection(db, "contacts"), {
 user: userId,
@@ -14,20 +14,9 @@ name: contactName,
 description: description,
 adress: contactAdress,
 relation: contactRelation,
-status: status,
 createdAt: new Date().getTime(),
 });
 } catch (err) {}
-};
-const toggleContactsStatus = async ({ docId, status }) => {
-try {
-const contactsRef = doc(db, "contacts", docId);
-await updateDoc(contactsRef, {
-status,
-});
-} catch (err) {
-console.log(err);
-}
 };
 const deleteContacts = async (docId) => {
 try {
@@ -37,4 +26,4 @@ await deleteDoc(contactsRef);
 console.log(err);
 }
 };
-export { addContacts, toggleContactsStatus, deleteContacts };
+export { addContacts, deleteContacts };
