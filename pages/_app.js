@@ -1,12 +1,10 @@
-import { ChakraProvider, Box } from "@chakra-ui/react";
-import Auth from "../components/Auth";
+import { ChakraProvider } from "@chakra-ui/react";
+import NavHeader from "../components/NavHeader";
 
 function MyApp({ Component, pageProps }) {
     return (
         <ChakraProvider>
-        <Box display="flex" alignItems="center" justifyContent="flex-end" pr="5%" pt="2%">
-            <Auth />
-        </Box>
+        <NavHeader />
         <Component {...pageProps} />
         </ChakraProvider>
     );

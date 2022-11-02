@@ -1,6 +1,5 @@
-import { Container, Box } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import AddContacts from "../components/AddContacts";
-import NavHeader from "../components/NavHeader";
 
 export default function AddContact() {
     return (

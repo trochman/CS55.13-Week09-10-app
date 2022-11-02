@@ -3,7 +3,6 @@ import {
     Flex,
     Text,
     IconButton,
-    Button,
     Stack,
     Collapse,
     Icon,
@@ -12,7 +11,6 @@ import {
     PopoverTrigger,
     PopoverContent,
     useColorModeValue,
-    useColorMode,
     useBreakpointValue,
     useDisclosure
   } from "@chakra-ui/react";
@@ -20,10 +18,8 @@ import {
     HamburgerIcon,
     CloseIcon,
     ChevronDownIcon,
-    ChevronRightIcon,
-    MoonIcon,
-    SunIcon
-  } from "@chakra-ui/icon";
+    ChevronRightIcon
+  } from "@chakra-ui/icons";
   import Auth from "./Auth";
 
         const NAV_ITEMS = [
@@ -32,11 +28,11 @@ import {
             children: [
                 {
                 label: "Add To Do",
-                href: "../pages/add-todo"
+                href: "/add-todo"
                 },
                 {
                 label: "To Do List",
-                href: "../pages/"
+                href: "/"
                 }
             ]
             },
@@ -45,11 +41,11 @@ import {
             children: [
                 {
                 label: "Add Event",
-                href: "../pages/add-events"
+                href: "/add-events"
                 },
                 {
                 label: "Event List",
-                href: "../pages/events"
+                href: "/events"
                 }
             ]
             },
@@ -58,17 +54,17 @@ import {
                 children: [
                 {
                     label: "Add Contact",
-                    href: "../pages/add-contacts"
+                    href: "/add-contacts"
                 },
                 {
                     label: "Contact List",
-                    href: "../pages/contacts"
+                    href: "/contacts"
                 }
                 ]
             }
         ]
 
-        const MobileNavItem = ({ label, href }) => {
+        const MobileNavItem = ({ label, href, children }) => {
             const { isOpen, onToggle } = useDisclosure()
         
             return (
@@ -135,8 +131,9 @@ import {
                 <Box>
                     <Text
                     transition={"all .3s ease"}
-                    _groupHover={{ color: "pink.400" }}
+                    _groupHover={{ color: "red.500" }}
                     fontWeight={500}
+                    fontSize="lg"
                     >
                     {label}
                     </Text>
@@ -148,9 +145,8 @@ import {
                     _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
                     justify={"flex-end"}
                     align={"center"}
-                    flex={1}
-                >
-                    <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+                    flex={1}>
+                    <Icon color={"red.500"} w={5} h={5} as={ChevronRightIcon} />
                 </Flex>
                 </Stack>
             </Link>
@@ -162,8 +158,7 @@ import {
             <Stack
                 bg={useColorModeValue("white", "gray.800")}
                 p={4}
-                display={{ md: "none" }}
-            >
+                display={{ md: "none" }}>
                 {NAV_ITEMS.map(navItem => (
                 <MobileNavItem key={navItem.label} {...navItem} />
                 ))}
@@ -183,16 +178,15 @@ import {
                     <Popover trigger={"hover"} placement={"bottom-start"}>
                     <PopoverTrigger>
                         <Link
-                        p={2}
+                        px={2}
                         href={navItem.children.href}
-                        fontSize={"sm"}
+                        fontSize={"xl"}
                         fontWeight={500}
                         color={linkColor}
                         _hover={{
                             textDecoration: "none",
                             color: linkHoverColor
-                        }}
-                        >
+                        }}>
                         {navItem.label}
                         </Link>
                     </PopoverTrigger>
@@ -204,8 +198,7 @@ import {
                         bg={popoverContentBgColor}
                         p={4}
                         rounded={"xl"}
-                        minW={"sm"}
-                        >
+                        minW={"sm"}>
                         <Stack>
                             {navItem.children.map(child => (
                             <DesktopSubNav key={child.label} {...child} />
@@ -220,13 +213,12 @@ import {
             )
         }
 
-        const NavHeader = () => {
+        export default function NavHeader() {
 
-            const { colorMode, toggleColorMode } = useColorMode();
             const { isOpen, onToggle } = useDisclosure();
 
             return (
-                <Box>
+                <Box px={40} pt={3}>
                     <Flex
                         bg={useColorModeValue("white", "gray.800")}
                         color={useColorModeValue("gray.600", "white")}
@@ -236,14 +228,12 @@ import {
                         borderBottom={1}
                         borderStyle={"solid"}
                         borderColor={useColorModeValue("gray.200", "gray.900")}
-                        align={"center"}
-                    >
+                        align={"center"}>
 
                         <Flex
                             flex={{ base: 1, md: "auto" }}
                             ml={{ base: -2 }}
-                            display={{ base: "flex", md: "none" }}
-                        >
+                            display={{ base: "flex", md: "none" }}>
                             <IconButton
                                 onClick={onToggle}
                                 icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
@@ -255,8 +245,8 @@ import {
                                 textAlign={useBreakpointValue({ base: "center", md: "left" })}
                                 fontFamily={"heading"}
                                 color={useColorModeValue("gray.800", "white")}
-                            >
-                                Logo
+                                fontSize="2xl">
+                                Menu
                             </Text>
 
                             <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -268,11 +258,7 @@ import {
                             flex={{ base: 1, md: 0 }}
                             justify={"flex-end"}
                             direction={"row"}
-                            spacing={6}
-                        >
-                            {/*<Button onClick={toggleColorMode}>
-        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        </Button>*/}
+                            spacing={6}>
 
                             <Auth />
                         </Stack>
@@ -284,5 +270,3 @@ import {
                 </Box>
             );
     };
-
-export default NavHeader;
