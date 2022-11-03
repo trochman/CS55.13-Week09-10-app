@@ -27,9 +27,6 @@ const EventsItem= ({data}) => {
             <Text>
                 {data.status}
             </Text>
-            <Text>
-                {data.createdAt}
-            </Text>
         </Box>
     );
 };

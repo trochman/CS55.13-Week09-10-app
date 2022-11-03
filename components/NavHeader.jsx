@@ -75,14 +75,10 @@ import {
                 href={href}
                 justify={"space-between"}
                 align={"center"}
-                _hover={{
-                    textDecoration: "none"
-                }}
-                >
+                _hover={{textDecoration: "none"}}>
                 <Text
                     fontWeight={600}
-                    color={useColorModeValue("gray.600", "gray.200")}
-                >
+                    color={useColorModeValue("gray.600", "gray.200")}>
                     {label}
                 </Text>
                 {children && (
@@ -91,8 +87,7 @@ import {
                     transition={"all .25s ease-in-out"}
                     transform={isOpen ? "rotate(180deg)" : ""}
                     w={6}
-                    h={6}
-                    />
+                    h={6}/>
                 )}
                 </Flex>
         
@@ -103,8 +98,7 @@ import {
                     borderLeft={1}
                     borderStyle={"solid"}
                     borderColor={useColorModeValue("gray.200", "gray.700")}
-                    align={"start"}
-                >
+                    align={"start"}>
                     {children &&
                     children.map(child => (
                         <Link key={child.label} py={2} href={child.href}>
@@ -125,7 +119,7 @@ import {
                 display={"block"}
                 p={2}
                 rounded={"md"}
-                _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                _hover={{ bg: useColorModeValue("red.500", "gray.900") }}
             >
                 <Stack direction={"row"} align={"center"}>
                 <Box>
@@ -140,7 +134,6 @@ import {
                 </Box>
                 <Flex
                     transition={"all .3s ease"}
-                    transform={"translateX(-10px)"}
                     opacity={0}
                     _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
                     justify={"flex-end"}

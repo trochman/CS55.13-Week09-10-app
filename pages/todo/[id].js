@@ -27,9 +27,6 @@ const ToDoItem= ({data}) => {
             <Text>
                 {data.status}
             </Text>
-            <Text>
-                {data.createdAt}
-            </Text>
         </Box>
     );
 };
