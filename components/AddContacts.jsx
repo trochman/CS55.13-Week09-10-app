@@ -33,7 +33,6 @@ const AddContacts = () => {
         description,
         contactAdress,
         contactRelation,
-        status,
         userId: user.uid,
         };
         await addContacts(contacts);

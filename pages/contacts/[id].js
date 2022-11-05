@@ -15,53 +15,55 @@ import {
 import useAuth from "../../hooks/useAuth";
 import {
     doc,
-    getDoc
+    getDoc,
+    setDoc
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export async function getServerSideProps(context) {
-    let data = null;
+    let itemData = null;
     const document = doc( db, 'contacts', context.params.id )
     const snapshot = await getDoc(document);
     if (snapshot.exists()) {
-        data = snapshot.data();
+        itemData = {
+            id : snapshot.id,
+            data : snapshot.data()
+        }
     }
 
     return {
         props:{
-            data
+            itemData
         }
     }
 };
 
-const ContactsItem= ({data}) => {
+const ContactsItem= ({itemData}) => {
     const {user} = useAuth() || {};
-    const [inputName, setInputName] = React.useState(data.name);
-    const [inputDescription, setInputDescription] = React.useState(data.description);
-    const [inputAdress, setInputAdress] = React.useState(data.adress);
-    const [inputRelation, setInputRelation] = React.useState(data.relation);
+    const [inputName, setInputName] = React.useState(itemData.data.name);
+    const [inputDescription, setInputDescription] = React.useState(itemData.data.description);
+    const [inputAdress, setInputAdress] = React.useState(itemData.data.adress);
+    const [inputRelation, setInputRelation] = React.useState(itemData.data.relation);
     const [statusMsg, setStatusMsg] = React.useState('');
     if(!user) {
         return;
     }
     
-    const sendNewData = async ({data}) => {
+    const sendNewData = async () => {
+        const docRef = doc( db, "contacts", itemData.id )
         try{
-        const docref = {data}
-        const doc = docref.get();
-
-        if (!doc.empty) {
-            docref.update(
+        if (!docRef.empty) {
+            setDoc(docRef,
             {
                 name: inputName,
                 description: inputDescription,
                 adress: inputAdress,
                 relation: inputRelation
-            }
+            }, 
+            { merge:true }
             );
             setStatusMsg("Updated!");
         }
-
         } catch (error) {
         console.log(error);
         }
@@ -70,16 +72,16 @@ const ContactsItem= ({data}) => {
     return (
         <Box mt={5} pl="5%">
             <Heading as="h3" fontSize={"xl"}>
-                {data.name}
+                {itemData.data.name}
             </Heading>
             <Text>
-                {data.description}
+                {itemData.data.description}
             </Text>
             <Text>
-                {data.adress}
+                {itemData.data.adress}
             </Text>
             <Text>
-                {data.relation}
+                {itemData.data.relation}
             </Text>
             <Flex flexDir="column" maxW={800} align="center" justify="start" minH="100vh" m="auto" px={4} py={3}>
                 <VStack spacing={10} p={10} alignItems="flex-start">
@@ -90,29 +92,30 @@ const ContactsItem= ({data}) => {
                         <GridItem colSpan={1}>
                             <FormControl>
                                 <FormLabel>Name</FormLabel>
-                                <Input type="text" value={inputName} onChange={(e) => setInputName(e.target.value)} placeholder={data.name} />
+                                <Input type="text" value={inputName} onChange={(e) => setInputName(e.target.value)} placeholder={itemData.data.name} />
                             </FormControl>
                         </GridItem>
                         <GridItem colSpan={1}>
                             <FormControl>
                                 <FormLabel>Description</FormLabel>
-                                <Input type="text" value={inputDescription} onChange={(e) => setInputDescription(e.target.value)} placeholder={data.description} />
+                                <Input type="text" value={inputDescription} onChange={(e) => setInputDescription(e.target.value)} placeholder={itemData.data.description} />
                             </FormControl>
                         </GridItem>
                         <GridItem colSpan={1}>
                             <FormControl>
                                 <FormLabel>Adress</FormLabel>
-                                <Input type="text" value={inputAdress} onChange={(e) => setInputAdress(e.target.value)} placeholder={data.adress} />
+                                <Input type="text" value={inputAdress} onChange={(e) => setInputAdress(e.target.value)} placeholder={itemData.data.adress} />
                             </FormControl>
                         </GridItem>
                         <GridItem colSpan={1}>
                             <FormControl>
                                 <FormLabel>Relation</FormLabel>
-                                <Input type="text" value={inputRelation} onChange={(e) => setInputRelation(e.target.value)} placeholder={data.relation} />
+                                <Input type="text" value={inputRelation} onChange={(e) => setInputRelation(e.target.value)} placeholder={itemData.data.relation} />
                             </FormControl>
                         </GridItem>
                         <GridItem colSpan={1}>
                             <Button
+                                variantColor="teal"
                                 ml={2}
                                 onClick={() => sendNewData()}>
                                 Update
