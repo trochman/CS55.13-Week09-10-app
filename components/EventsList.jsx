@@ -49,7 +49,7 @@ import {
             <Box mt={5}>
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
                     {events && events.map((events) => (
-                        <Link href={'/events/' + events.id}>
+                        <Link href={'/events/' + events.id} key={'/events/' + events.id}>
                         <Box
                             p={3}
                             boxShadow="2xl"

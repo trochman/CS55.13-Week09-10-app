@@ -41,7 +41,7 @@ import {
             <Box mt={5}>
                 <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
                     {contacts && contacts.map((contacts) => (
-                    <Link href={'/contacts/' + contacts.id}>
+                    <Link href={'/contacts/' + contacts.id} key={'/contacts/' + contacts.id}>
                     <Box
                         p={3}
                         boxShadow="2xl"
